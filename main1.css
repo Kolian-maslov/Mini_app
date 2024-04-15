@@ -1,0 +1,38 @@
+body {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 420px;
+    padding: 0px 0px;
+    background: linear-gradient(90deg, #0f202d 0%, #000 28.12%, #050b10 71.88%, #0f202d 100%);
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+
+
+.main_block{
+    display: flex;
+    padding: 20px;
+}
+.card{
+    display: block;
+    background-color: #00d2ff;
+    border-radius: 20px;
+}
+
+.points{
+    text-align: center;
+    display: block;
+    padding: 5px 20px;
+}
+
+h1{
+    color: #daff01;
+    font-size: 24px;
+}
+
+.photo{
+    display: flex;
+    overflow: hidden;
+    padding: 20px;
+}
