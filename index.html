@@ -204,50 +204,30 @@ img {
 </head>
 
 <body>
-<div id="initData"></div>
-    <div id="initDataUnsafe"></div>
-    <script>
-        Telegram.WebApp.ready();
+  <div id="initData"></div>
+  <div id="initDataUnsafe"></div>
 
-        var initData = Telegram.WebApp.initData || '';
-        var initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
+  <script>
+    // Access initData and initDataUnsafe
+    const initData = Telegram.WebApp.initData || '';
+    const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
+    if (initDataUnsafe.query_id && initData) {
+        // Convert initData to JSON string
+        const initDataJson = JSON.stringify(initData);
 
-        if (initDataUnsafe.query_id && initData) {
-            function sendMessage(msg_id, with_webview) {
-              if (!initDataUnsafe.query_id) {
-                alert('WebViewQueryId not defined');
-                return;
-              }
-              $('button').prop('disabled', true);
-              $('#btn_status').text('Sending...').removeClass('ok err').show();
-              $.ajax('/demo/sendMessage', {
-                type: 'POST',
-                data: {_auth: initData, msg_id: msg_id || '', with_webview: !initDataUnsafe.receiver && with_webview ? 1 : 0},
-                dataType: 'json',
-                success: function(result) {
-                  $('button').prop('disabled', false);
-                  if (result.response) {
-                    if (result.response.ok) {
-                      $('#btn_status').html('Message sent successfully!').addClass('ok').show();
-                    } else {
-                      $('#btn_status').text(result.response.description).addClass('err').show();
-                      alert(result.response.description);
-                    }
-                  } else {
-                    $('#btn_status').text('Unknown error').addClass('err').show();
-                    alert('Unknown error');
-                  }
-                },
-                error: function(xhr) {
-                  $('button').prop('disabled', false);
-                  $('#btn_status').text('Server error').addClass('err').show();
-                  alert('Server error');
-                }
-              });
-            }
-            sendMessage();
-        }
-    </script>
+        // Convert initDataUnsafe to JSON string
+        const initDataUnsafeJson = JSON.stringify(initDataUnsafe);
+
+        // Display initData in the #initData div
+        const initDataDiv = document.getElementById('initData');
+        initDataDiv.innerHTML = `<h2>initData</h2><pre>${initDataJson}</pre>`;
+
+        // Display initDataUnsafe in the #initDataUnsafe div
+        const initDataUnsafeDiv = document.getElementById('initDataUnsafe');
+        initDataUnsafeDiv.innerHTML = `<h2>initDataUnsafe</h2><pre>${initDataUnsafeJson}</pre>`;
+    }
+  </script>
+
 
    <div class="main_block">
     <div class="Card">
