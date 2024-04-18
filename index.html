@@ -202,12 +202,12 @@ img {
 
 
 </head>
-
 <body>
   <div id="initData"></div>
   <div id="initDataUnsafe"></div>
 
   <script>
+      Telegram.WebApp.ready();
     // Access initData and initDataUnsafe
     const initData = Telegram.WebApp.initData || '';
     const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
