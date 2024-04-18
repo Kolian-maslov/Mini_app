@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <meta name="viewport" content="width = device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    
+    <script src="https://telegram.org/js/telegram-web-app.js?7"></script>
     <style>
         body {
     margin-left: auto;
@@ -199,9 +199,36 @@ img {
 }
 
     </style>
+
+
 </head>
 
 <body>
+  <div id="initData"></div>
+  <div id="initDataUnsafe"></div>
+
+  <script>
+    // Access initData and initDataUnsafe
+    const initData = Telegram.WebApp.initData || '';
+    const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
+    if (initDataUnsafe.query_id && initData) {
+        // Convert initData to JSON string
+        const initDataJson = JSON.stringify(initData);
+
+        // Convert initDataUnsafe to JSON string
+        const initDataUnsafeJson = JSON.stringify(initDataUnsafe);
+
+        // Display initData in the #initData div
+        const initDataDiv = document.getElementById('initData');
+        initDataDiv.innerHTML = `<h2>initData</h2><pre>${initDataJson}</pre>`;
+
+        // Display initDataUnsafe in the #initDataUnsafe div
+        const initDataUnsafeDiv = document.getElementById('initDataUnsafe');
+        initDataUnsafeDiv.innerHTML = `<h2>initDataUnsafe</h2><pre>${initDataUnsafeJson}</pre>`;
+    }
+  </script>
+
+
    <div class="main_block">
     <div class="Card">
         <div class="Card-Status">
