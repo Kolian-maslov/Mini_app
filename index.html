@@ -202,30 +202,29 @@ img {
 
 
 </head>
+
 <body>
   <div id="initData"></div>
   <div id="initDataUnsafe"></div>
 
   <script>
-      Telegram.WebApp.ready();
     // Access initData and initDataUnsafe
     const initData = Telegram.WebApp.initData || '';
     const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
-    if (initDataUnsafe.query_id && initData) {
-        // Convert initData to JSON string
-        const initDataJson = JSON.stringify(initData);
 
-        // Convert initDataUnsafe to JSON string
-        const initDataUnsafeJson = JSON.stringify(initDataUnsafe);
+    // Convert initData to JSON string
+    const initDataJson = JSON.stringify(initData);
 
-        // Display initData in the #initData div
-        const initDataDiv = document.getElementById('initData');
-        initDataDiv.innerHTML = `<h2>initData</h2><pre>${initDataJson}</pre>`;
+    // Convert initDataUnsafe to JSON string
+    const initDataUnsafeJson = JSON.stringify(initDataUnsafe);
 
-        // Display initDataUnsafe in the #initDataUnsafe div
-        const initDataUnsafeDiv = document.getElementById('initDataUnsafe');
-        initDataUnsafeDiv.innerHTML = `<h2>initDataUnsafe</h2><pre>${initDataUnsafeJson}</pre>`;
-    }
+    // Display initData in the #initData div
+    const initDataDiv = document.getElementById('initData');
+    initDataDiv.innerHTML = `<h2>initData</h2><pre>${initDataJson}</pre>`;
+
+    // Display initDataUnsafe in the #initDataUnsafe div
+    const initDataUnsafeDiv = document.getElementById('initDataUnsafe');
+    initDataUnsafeDiv.innerHTML = `<h2>initDataUnsafe</h2><pre>${initDataUnsafeJson}</pre>`;
   </script>
 
 
