@@ -206,6 +206,8 @@ img {
 <body>
   <div id="initData"></div>
   <div id="initDataUnsafe"></div>
+  <span id="webview_data_status" style="display: none;">Checking hash...</span>
+
 
   <script>
     // Access initData and initDataUnsafe
@@ -225,6 +227,25 @@ img {
     // Display initDataUnsafe in the #initDataUnsafe div
     const initDataUnsafeDiv = document.getElementById('initDataUnsafe');
     initDataUnsafeDiv.innerHTML = `<h2>initDataUnsafe</h2><pre>${initDataUnsafeJson}</pre>`;
+
+    if (initDataUnsafe.query_id && initData) {
+      $('#webview_data_status').show();
+      $.ajax('/demo/checkData', {
+        type: 'POST',
+        data: {_auth: initData},
+        dataType: 'json',
+        success: function(result) {
+          if (result.ok) {
+            $('#webview_data_status').html('Hash is correct').addClass('ok');
+          } else {
+            $('#webview_data_status').html(result.error).addClass('err');
+          }
+        },
+        error: function(xhr) {
+          $('#webview_data_status').html('Server error').addClass('err');
+        }
+      });
+    }
   </script>
 
 
