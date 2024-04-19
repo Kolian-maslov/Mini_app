@@ -228,7 +228,7 @@ img {
     const initDataUnsafeDiv = document.getElementById('initDataUnsafe');
     initDataUnsafeDiv.innerHTML = `<h2>initDataUnsafe</h2><pre>${initDataUnsafeJson}</pre>`;
 
-    if (initDataUnsafe.query_id && initData) {
+    //if (initDataUnsafe.query_id && initData) {
       $('#webview_data_status').show();
       $.ajax('/demo/checkData', {
         type: 'POST',
@@ -245,7 +245,7 @@ img {
           $('#webview_data_status').html('Server error').addClass('err');
         }
       });
-    }
+    //}
   </script>
 
 
